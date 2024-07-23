@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폼관련태그</title>
+</head>
+<body>
+    <h1>폼 관련태그</h1>
+    <pre>
+        form 태그는 html에서 사용자가 입력할 수 있는 양식을 제공하는 태그
+        form 태그 내의 input 태그들을 통해 사용자가 입력한 정보를 서버로
+        넘기는 역할을 한다.
+        * action 속성 : 폼에 입력된 값들을 받을 서버의 url을 입력
+        * method 속성 : get/post 방식으로 전송 방식 지정
+    </pre>
+    <form action="search" method="post">
+        <label>검색할 내용</label>
+        <input type="text">
+        <button type="submit">검색</button>
+    </form>
+
+    <hr>
+    <form action="test" method="get">
+        <fieldset>
+            <legend>필드셋의 제목을 작성하는 부분</legend>
+            <label>입력1 : </label><input type="text" value="사과"><br>
+            <label>입력2 : </label><input type="text"><br>
+            <label>입력3 : </label><input type="text">
+        </fieldset>
+        <fieldset>
+            <legend>필드셋으로 묶은 영역별로 구분 가능</legend>
+            <label>입력4 : </label><input type="text" value="사과"><br>
+            <label>입력5 : </label><input type="text"><br>
+            <label>입력6 : </label><input type="text">
+        </fieldset> 
+        <input type="submit" value="넘기기">
+    </form>
+
+    <hr>
+    <!-- 다양한 종류의 input 태그 타입 -->
+    <h2>input</h2>
+    <!-- 
+    name : 서버로 전송될 때 이 필드의 이름을 지정, 서버에서 이를 통해 참조 가능
+    id   : css 적용 및 javascript로 접근할때 사용되는 고유 식별자
+    value : 필드에 기본적으로 표시될 값
+    placeholder : 입력 필드에 표시될 힌트 텍스트 표시 (안내역할)
+    readonly : 사용자가 입력필드를 수정 할 수 없도록 만든다 (읽기전용)
+    required : 필수 입력 필드로 지정한다. (안쓰인상태로 submit하면 경고발생)
+    -->
+    <form action="test/a">
+        <fieldset>
+            <legend>text관련 input태그</legend>
+            <label>회원명 : </label>
+            <input type="text" name="memberName" id="memberName"
+            placeholder="이름을 입력하세요..." 
+            required
+            >
+            <br>
+            <label for="memberPw">비밀번호 : </label>
+            <input type="password" name="memberPw" id="memberPw"
+            part="비밀번호를 입력하세요.."
+            required
+            maxlength="6"
+            >
+            <br>
+            <!-- 
+            search type
+            텍스트상자와 다르게 스타일링 가능하다.
+            취소버튼이 제공된다.
+            모바일에서는 키보드 레이아웃이 나올 수 있다.
+            -->
+            <label for="searchKw">검색 : </label>
+            <input type="search" name="searchKw" id="searchKw">
+            <br>
+            
+            <!-- https:// 이후 입력하지 않으면 submit 제한 -->
+            <label>홈페이지 : </label>
+            <input type="url" value="https://">
+            <br>
+
+            <!-- 
+            tel라는 타입은 있지만 형식 검증은 지원되지 않는다. 
+            pattern 속성과 정규표현식을 이용해서 형식 검증은 가능
+            -->
+            <label for="memberTel">전화번호 : </label>
+            <input type="tel" name="memberTel" id="memberTel"
+            placeholder="010-1234-5678"
+            >
+            <br>
+
+            <label for="memberTel2">형식검증 전화번호 : </label>
+            <input type="tel" name="memberTel2" id="memberTel2"
+            placeholder="010-1234-5678"
+            pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}"
+            >
+            <br>
+
+            <label for="memo">메모 : </label>
+            <textarea name="memo" id="memo"
+            cols="35" rows="10"
+            ></textarea>
+
+            <input type="submit" value="전송">
+            <br>
+        </fieldset>
+    </form>
+
+    <form action="test/b">
+        <fieldset>
+            <legend>숫자와 관련된 input 태그</legend>
+            <h3>type=number</h3>
+            <label>수량 : </label>
+            <input type="number" min="0" max="100" value="0" step="5">
+            <br>
+            
+            <h3>type=range</h3>
+            <p>슬라이드바로 숫자를 지정할 수 있다.</p>
+            <label>점수 : </label>
+            <input type="range" min="0" max="100" value="50" step="5">
+            <br>
+            <input type="submit" value="전송">
+        </fieldset>
+    </form>
+
+    <form action="test/c">
+        <fieldset>
+            <legend>날짜 및 시간관련 input 태그</legend>
+            <label for="someday">날짜 : </label>
+            <input type="date" name="someday" id="someday" 
+            value="1999-09-09">
+            <br>
+
+            <label for="sometime">시각 : </label>
+            <input type="time" name="sometime" id="sometime" value="21:30">
+            <br>
+
+            <label for="when">날짜/시각</label>
+            <input type="datetime-local" name="when" id="when"
+            value="1999-09-09T16:16"
+            >
+            <br>
+
+            <input type="submit" value="전송">
+        </fieldset>
+    </form>
+
+    <form action="test/d">
+        <fieldset>
+            <legend>선택관련 input</legend>
+
+            <!-- 단일선택 radio -->
+            <div>
+                성별 : 
+                <label for="gender-male">남</label>
+                <input type="radio" name="gender" id="gender-male" value="M" >
+                <label for="gender-female">여</label>
+                <input type="radio" name="gender" id="gender-female" value="F" checked>
+            </div>
+
+            <div>
+                <label for="sms">SMS수신</label>
+                <input type="checkbox" name="sms" id="sms">
+            </div>
+            
+            <div>
+                <input type="checkbox" name="hobby" id="hobby-game" value="GAME" checked>
+                <label for="hobby-game">게임</label>
+                <input type="checkbox" name="hobby" id="hobby-movie" value="MOVIE">
+                <label for="hobby-movie">영화</label>
+                <input type="checkbox" name="hobby" id="hobby-music" value="MUSIC">
+                <label for="hobby-music">음악</label>
+            </div>
+            
+            <!-- 
+            select option
+            size : listbox의 크기를 지정한다.
+            mulitple : 다중선택 가능
+            -->
+            <select name="menu" id="menu">
+                <option value="">==메뉴선택==</option>
+                <option value="된">된장찌개</option>
+                <option value="순" selected>순두부찌개</option>
+                <option value="김">김치찌개</option>
+            </select>
+            <br>
+            
+            <!-- 
+            datalist는 사용자의 입력이 가능하다.
+            option, checkbox, select가 정해진 내용을 선택하는 느낌이라면
+            datatlist는 추천 목록을 제공해주는 느낌이라고 생각하면된다.
+            -->
+            <label for="userBrowser">브라우저 선택</label>
+            <input type="text" name="userBrowser" id="userBrowser"
+            list="browsers">
+                <datalist id="browsers">
+                    <option value="Edge">엣지</option>
+                    <option value="Chrome">크롬</option>
+                    <option value="Firefox">파이어폭스</option>
+                    <option value="Edge"></option>
+                    <option value="Chrome"></option>
+                    <option value="Firefox"></option>
+                </datalist> 
+                <br>
+                <input type="reset" value="초기화">
+        </fieldset>
+    </form>
+
+    <form action="test/e">
+        <fieldset>
+            <legend>기타 input</legend>
+            <div>
+                <label for="favoritColor">선호색상</label>
+                <input type="color" name="favoritColor" id="favoritColor"
+                value="#00ffcc">
+            </div>
+            <div>
+                <label for="upFile">파일선택</label>
+                <input type="file" name="upFile" id="upFile">
+            </div>
+
+            <!-- 존재는하지만, 사용자가 편집할 수 없는 기본값을 세팅할 때 -->
+            <div>
+                <input type="hidden" name="val" value="123">
+            </div>
+            
+            <!-- 노출은 되지만 서버로 전송되지 않음 -> disabled -->
+            <div>
+                <input type="text" name="name" value="taegeun" disabled>
+            </div>
+
+            <input type="reset" value="초기화">
+        </fieldset>
+        <!-- 
+        input : 간단하게 만들때 사용된다.
+        button : css, javascript 과 함께 기능들을 더 넣을 수 있다.
+         -->
+        <div>
+            <input type="button" value="버튼">
+            <input type="reset" value="초기화">
+            <input type="submit" value="제출">
+        </div>
+
+        <div>
+            <button type="button">버튼</button>
+            <button type="reset">초기화</button>
+            <button type="submit">제출</button>
+        </div>
+    </form>
+
+
+
+
+
+
+
+
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+</body>
+</html>
